@@ -1,24 +1,21 @@
 version: "3.3"
 services:
  api:
-   container_name: pythonapp_container
-   image: pythonapp_image:v2
-   depends_on :
-       - postgres
+   container_name: flaskapp
+   image: flaskapp:v1
    ports:
-    - "3000:3000"
+    - "5000:5000"
+   environment:
+    - PSQL_URL=postgresql://postgres:mysecretpassword@some-postgres/postgres
 
  postgres:
     image: postgres:14.1-alpine
+    container_name : some-postgres
     restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=mysecretpassword
     ports:
-      - "5431:5431"
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
     volumes :
-      - db_data:/data:rw
-
-volumes:
-  db_data:
+      - /home/leena/Desktop/data:/var/lib/postgresql/data
 
