@@ -1,6 +1,6 @@
 pipeline { 
     environment { 
-        registry = "leenalr/demoimage" 
+        registry = "leenalr/flaskapp" 
         registryCredential = 'dockerhub_leena' 
         dockerImage = '' 
     }
