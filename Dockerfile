@@ -1,7 +1,7 @@
 FROM python
 WORKDIR /app
 COPY . /app
-Run apt-get install httpd24
+RUN apt-get install httpd24
 RUN apt-get update -y \
     && apt install python3 -y \
     && apt install python3-pip -y \
