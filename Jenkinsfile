@@ -9,19 +9,16 @@ pipeline {
         stage('Building our image') { 
             steps { 
                   script { 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    sh 'docker build -t flaskapp:v1'
                 }
             } 
         }
-        stage('push our image') { 
-            steps { 
-                script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
-                    }
-                } 
+        stage('scan') {
+            script {
+                sh 'trivy flaskapp:v1'
             }
-        } 
+            
+        }
         
         
     }
