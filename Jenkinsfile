@@ -15,8 +15,10 @@ pipeline {
         }
     }
         stage('scan') {
-            script {
-                sh 'trivy flaskapp:v1'
+            steps {
+               script {
+                   sh 'trivy flaskapp:v1'
+                   }
             }
             
         }
