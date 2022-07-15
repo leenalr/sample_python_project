@@ -9,7 +9,7 @@ pipeline {
         stage('Building our image') { 
             steps { 
                   script { 
-                    sh 'docker build -t flaskapp:v1'
+                    sh 'docker build -t flaskapp:v1 .'
                 }
             } 
         }
