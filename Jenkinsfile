@@ -13,6 +13,7 @@ pipeline {
                 }
             } 
         }
+    }
         stage('scan') {
             script {
                 sh 'trivy flaskapp:v1'
