@@ -13,14 +13,6 @@ pipeline {
                 }
             } 
         }
-        
-        stage('Scan') {
-            steps {
-                sh 'trivy dockerImage'
-            }
-        }
-
-        
         stage('push our image') { 
             steps { 
                 script { 
