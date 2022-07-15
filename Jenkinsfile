@@ -31,12 +31,13 @@ pipeline {
                     reportFiles: 'nodjs-scan.html',
                     reportName: 'Trivy Scan',
                     reportTitles: 'Trivy Scan'
-                    }
+                    ]
 
                 // Scan again and fail on CRITICAL vulns
                 sh 'trivy filesystem --ignore-unfixed --vuln-type os,library --exit-code 1 --severity CRITICAL ./nodejs'
 
             }
+        }
 
         stage('push our image') { 
             steps { 
