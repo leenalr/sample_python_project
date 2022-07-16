@@ -17,7 +17,8 @@ pipeline {
         stage('Scan') {
             steps {
                 script {
-                 sh 'trivy image flaskapp:v1'
+                 sh 'docker pull aquasec/trivy:0.18.3'
+                 sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/jenkins_home/.cache:/root/.cache/ aquasec/trivy:0.18.3 flaskapp:v1'
                   
                    }
             }
