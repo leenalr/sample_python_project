@@ -9,7 +9,7 @@ pipeline {
         stage('Building our image') { 
             steps { 
                   script { 
-                      sh'docker build -t leenalr/flaskapp:${BUILD_NUMBER}'
+                      sh'docker build -t leenalr/flaskapp:${BUILD_NUMBER} .'
                 }
             } 
         }
