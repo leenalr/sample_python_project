@@ -9,7 +9,7 @@ pipeline {
         stage('Building our image') { 
             steps { 
                   script { 
-                    sh 'docker build -t flaskapp:v1 .'
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 }
             } 
         }
@@ -17,7 +17,7 @@ pipeline {
         stage('Scan') {
             steps {
                 script {
-                 sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/jenkins_home/.cache:/root/.cache/ aquasec/trivy:0.18.3 image -f json -o /root/.cache/results.json flaskapp:v1'
+                 sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/jenkins_home/.cache:/root/.cache/ aquasec/trivy:0.18.3 image -f json -o /root/.cache/results.json dockerImage'
                 }
             }
             
